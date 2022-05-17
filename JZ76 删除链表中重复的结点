@@ -1,0 +1,35 @@
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+    public ListNode deleteDuplication(ListNode pHead) {
+        ListNode head = new ListNode(0);
+        head.next = pHead;
+        ListNode cur = pHead;
+        ListNode pre = head;
+        while(cur == null){
+            return null;
+        }
+        while(cur != null && cur.next != null){
+            if(cur.val == cur.next.val){
+                ListNode temp = cur.next;
+                while(temp != null && cur.val == temp.val){
+                    temp = temp.next;
+                }
+                pre.next = temp;
+                cur = temp;
+            }else{
+                pre = cur;
+                cur = pre.next;
+            }
+        }
+        return head.next;
+    }
+}
