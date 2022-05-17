@@ -1,0 +1,29 @@
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+import java.util.*;
+public class Solution {
+
+    public ListNode EntryNodeOfLoop(ListNode pHead) {
+        HashSet<ListNode> set = new HashSet<>();
+        ListNode p = pHead;
+        while(p == null){
+            return null;
+        }
+        while(p != null){
+            if(set.add(p) == false){
+                return p;
+            }else{
+                p = p.next;
+            }
+        }
+        return p;
+    }
+}
