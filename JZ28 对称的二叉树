@@ -1,0 +1,30 @@
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    boolean isSymmetrical(TreeNode pRoot) {
+        while(pRoot == null){
+            return true;
+        }
+        return judge(pRoot.left, pRoot.right);
+    }
+    boolean judge(TreeNode lnode, TreeNode rnode){
+        if(lnode == null && rnode == null){
+            return true;
+        }
+        if(lnode == null || rnode == null || lnode.val != rnode.val){
+            return false;
+        }
+        return judge(lnode.left, rnode.right) && judge(lnode.right, rnode.left);
+    }
+}
