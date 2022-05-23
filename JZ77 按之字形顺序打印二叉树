@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+import java.util.*;
+public class Solution {
+    public ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
+        ArrayList<ArrayList<Integer>> returnList = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        while(pRoot == null){
+            return returnList;
+        }
+        queue.add(pRoot);
+        int countLayer = 1;
+        int countNode = 0;
+        while(!queue.isEmpty()){
+            countNode = queue.size();
+            ArrayList<Integer> outcome = new ArrayList<>();
+            for(int i=0; i<countNode; i++){
+                TreeNode node = queue.remove();
+                outcome.add(node.val);
+                if(node.left != null){
+                    queue.add(node.left);
+                }
+                if(node.right != null){
+                    queue.add(node.right);
+                }
+            }
+            if(countLayer%2 == 0){
+                Collections.reverse(outcome);
+            }
+            countLayer++;
+            returnList.add(outcome);
+        }
+        return returnList;
+    }
+}
