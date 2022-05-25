@@ -1,0 +1,46 @@
+import java.util.*;
+
+/*
+ * public class TreeNode {
+ *   int val = 0;
+ *   TreeNode left = null;
+ *   TreeNode right = null;
+ *   public TreeNode(int val) {
+ *     this.val = val;
+ *   }
+ * }
+ */
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param proot TreeNode类 
+     * @param k int整型 
+     * @return int整型
+     */
+    ArrayList<Integer> list = new ArrayList<>();
+    public int KthNode (TreeNode proot, int k) {
+        // write code here
+        int returnValue = -1;
+        if(proot == null || k<=0){
+            return returnValue;
+        }
+        InOrderTraverse(proot, k);
+        if(k<=list.size()){
+            returnValue = list.get(k-1);
+        }
+        return returnValue;
+    }
+    public void InOrderTraverse(TreeNode root, int k){
+        if(root != null){
+            InOrderTraverse(root.left,k);
+            list.add(root.val);
+            if(k<=list.size()){
+                return;
+            }
+            InOrderTraverse(root.right,k);
+        }
+    }
+}
